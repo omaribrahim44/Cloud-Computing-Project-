@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  # Web service configuration
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile   # Name of your custom Dockerfile for the web service
+    ports:
+      - "80:80"  # Expose port 80 for HTTP traffic
+    depends_on:
+      - db  # Specify dependency on the database service
+
+  # Database service configuration
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: student
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: password
+    volumes:
+      - db-data:/var/lib/mysql  # Mount volume for persisting MySQL data
+
+# Define volumes for persisting data
+volumes:
+  db-data:

@@ -1,0 +1,13 @@
+# Dockerfile for setting up a MySQL server
+
+# Use a specific version of the MySQL image
+FROM mysql:8.0
+
+# Set MySQL root password (change it to something secure)
+ENV MYSQL_ROOT_PASSWORD=password
+
+# Create a new database (optional)
+ENV MYSQL_DATABASE=student
+
+# Expose port 3306
+EXPOSE 3306
